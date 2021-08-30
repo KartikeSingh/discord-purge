@@ -23,11 +23,12 @@ module.exports = (f, message, channel, filter, number = 100, e) => {
 
         await channel.bulkDelete(msgs);
 
-        if (!handle) return res({ type: "success", id: 0, message: `Successfully Purged ${msgs.length} messages`, data });
+        if (!handle) return res({ type: "success", message: `Successfully Purged ${msgs.length} messages`, data });
 
-        if (Object.keys(data).length > 0) for (let i = 0; i < Object.keys(data).length; i++)content += `**${Object.keys(data)[i]}** : ${Object.values(data)[i]}`
+        if (Object.keys(data).length > 0) for (let i = 0; i < Object.keys(data).length; i++)content += `**${Object.keys(data)[i]}** : ${Object.values(data)[i]}\n`
 
-        if (!message.replied) return message.channel.send({ embeds: [{ color: "GREEN", title: `Successfully Purged ${msgs.length} messages ${acceptEmoji}`, descriptiom: `Messages were from these users :\n` + content }] })
-        message.reply({ embeds: [{ color: "GREEN", title: `Successfully Purged ${msgs.length} messages ${acceptEmoji}`, descriptiom: `Messages were from these users :\n` + content }] })
+        if (!message.replied) message.channel.send({ embeds: [{ color: "GREEN", title: `Successfully Purged ${msgs.length} messages ${acceptEmoji}`, description: `Messages were from these users :\n` + content }] })
+        else message.reply({ embeds: [{ color: "GREEN", title: `Successfully Purged ${msgs.length} messages ${acceptEmoji}`, description: `Messages were from these users :\n` + content }] })
+        res("done");
     })
 }

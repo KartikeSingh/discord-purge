@@ -1,0 +1,1 @@
+const Purger = require('./src');

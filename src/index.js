@@ -9,7 +9,6 @@ class purge {
      * @note All properties are optional
      * @param {Object} options The options of Purge Class
      * @param {Boolean} options.handle whether you want me to auto handle everything i.e. auto replying on errors etc
-     * @param {Number} options.autoDeleteIn Time after which auto delete message
      * @param {String} options.rejectEmoji The rejection emoji like ❌,❎
      * @param {String} options.acceptEmoji The Accepting emoji like ✔,✅
      */
