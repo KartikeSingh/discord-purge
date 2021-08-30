@@ -1,0 +1,31 @@
+{
+  "dependencies": {
+    "discord.js": "^13.1.0",
+    "links-finder": "^1.0.0"
+  },
+  "name": "discord-purger",
+  "version": "0.0.1",
+  "description": "An module to purge messages in a advanc way for discord bots",
+  "main": "src/index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "node test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KartikeSingh/discord-purge.git"
+  },
+  "keywords": [
+    "discord-purger",
+    "purge",
+    "messages",
+    "discord",
+    "bots"
+  ],
+  "author": "shisui",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KartikeSingh/discord-purge/issues"
+  },
+  "homepage": "https://github.com/KartikeSingh/discord-purge#readme"
+}
