@@ -11,6 +11,10 @@ You might be thinking that what is this package we already have inbuilt purge me
 - Easy to use.
 - Active Support on [discord server](https://discord.gg/XYnMTQNTFh).
 
+# Note
+- We supports Discord.js V-13 <b>only</b>.
+- We supports both slash commands and text based commands.
+
 # Methods
 This package have following methods.
 ```js

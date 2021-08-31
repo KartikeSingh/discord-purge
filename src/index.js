@@ -26,9 +26,9 @@ class purge {
 
     /**
      * An module to purge normal messages of a channel ( upto 100 )
-     * @param {Discord.Message | Discord.CommandInteraction} message
+     * @param {Discord.Message | Discord.CommandInteraction} message The message or interaction in which command was used 
      * @param {Discord.TextChannel} channel The channel where you want to purge messages
-     * @param {Number} number 
+     * @param {Number} number The number of messages to purge
      */
     async purgeMessages(message, channel, number) {
         return new Promise(async (res, rej) => {
@@ -43,7 +43,7 @@ class purge {
 
     /**
       * An module to purge bot messages from last 100 messages
-      * @param {Discord.Message | Discord.CommandInteraction} message
+      * @param {Discord.Message | Discord.CommandInteraction} message The message or interaction in which command was used
       * @param {Discord.TextChannel} channel The channel where you want to purge messages
       */
     async purgeBotMessages(message, channel) {
@@ -59,10 +59,10 @@ class purge {
 
     /**
       * An module to purge user messages from last 100 messages
-      * @param {Discord.Message | Discord.CommandInteraction} message
+      * @param {Discord.Message | Discord.CommandInteraction} message The message or interaction in which command was used
       * @param {Discord.TextChannel} channel The channel where you want to purge messages
+      * @param {Number} number The number of messages to purge
       * @param {Discord.User | Discord.GuildMember | String} user The discord user or user ID
-      * @param {Number} user The number of messages to purge
       */
     async purgeUserMessages(message, channel, number, user) {
         return new Promise(async (res, rej) => {
@@ -76,11 +76,11 @@ class purge {
     }
 
     /**
-      * An module to purge messages which contains some string ( from last 100 messages )
-      * @param {Discord.Message | Discord.CommandInteraction} message
+      * An module to purge messages which contains ( from last 100 messages ) some string ( from last 100 messages )
+      * @param {Discord.Message | Discord.CommandInteraction} message The message or interaction in which command was used
       * @param {Discord.TextChannel} channel The channel where you want to purge messages
-      * @param {String} string The string which message should include
       * @param {Number} number Number of messages to delete
+      * @param {String} string The string which message should include
       */
     async purgeMessagesIncludes(message, channel, number, string) {
         return new Promise(async (res, rej) => {
@@ -95,10 +95,10 @@ class purge {
 
     /**
       * An module to purge messages which are equal to some string ( from last 100 messages )
-      * @param {Discord.Message | Discord.CommandInteraction} message
+      * @param {Discord.Message | Discord.CommandInteraction} message The message or interaction in which command was used
       * @param {Discord.TextChannel} channel The channel where you want to purge messages
-      * @param {String} string The string which message should include
       * @param {Number} number Number of messages to delete
+      * @param {String} string The string which message should include
       */
     async purgeMessagesEqual(message, channel, number, string) {
         return new Promise(async (res, rej) => {
@@ -113,10 +113,10 @@ class purge {
 
     /**
       * An module to purge messages which starts with some string ( from last 100 messages )
-      * @param {Discord.Message | Discord.CommandInteraction} message
+      * @param {Discord.Message | Discord.CommandInteraction} message The message or interaction in which command was used
       * @param {Discord.TextChannel} channel The channel where you want to purge messages
-      * @param {String} string The string which message should include
       * @param {Number} number Number of messages to delete
+      * @param {String} string The string which message should include
       */
     async purgeMessagesStartsWith(message, channel, number, string) {
         return new Promise(async (res, rej) => {
@@ -131,10 +131,10 @@ class purge {
 
     /**
       * An module to purge messages which ends with some string ( from last 100 messages )
-      * @param {Discord.Message | Discord.CommandInteraction} message
+      * @param {Discord.Message | Discord.CommandInteraction} message The message or interaction in which command was used
       * @param {Discord.TextChannel} channel The channel where you want to purge messages
-      * @param {String} string The string which message should include
       * @param {Number} number Number of messages to delete
+      * @param {String} string The string which message should include
       */
     async purgeMessagesEndsWith(message, channel, number, string) {
         return new Promise(async (res, rej) => {
@@ -148,8 +148,8 @@ class purge {
     }
 
     /**
-      * An module to purge messages which contains emojis
-      * @param {Discord.Message | Discord.CommandInteraction} message
+      * An module to purge messages which contains ( from last 100 messages ) emojis
+      * @param {Discord.Message | Discord.CommandInteraction} message The message or interaction in which command was used
       * @param {Discord.TextChannel} channel The channel where you want to purge messages
       * @param {Number} number Number of messages to delete
       */
@@ -165,8 +165,8 @@ class purge {
     }
 
     /**
-      * An module to purge messages which contains Attachments
-      * @param {Discord.Message | Discord.CommandInteraction} message
+      * An module to purge messages which contains ( from last 100 messages ) Attachments
+      * @param {Discord.Message | Discord.CommandInteraction} message The message or interaction in which command was used
       * @param {Discord.TextChannel} channel The channel where you want to purge messages
       * @param {Number} number Number of messages to delete
       */
@@ -182,8 +182,8 @@ class purge {
     }
 
     /**
-      * An module to purge messages which contains links
-      * @param {Discord.Message | Discord.CommandInteraction} message
+      * An module to purge messages which contains ( from last 100 messages ) links
+      * @param {Discord.Message | Discord.CommandInteraction} message The message or interaction in which command was used
       * @param {Discord.TextChannel} channel The channel where you want to purge messages
       * @param {Number} number Number of messages to delete
       */
