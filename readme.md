@@ -14,6 +14,7 @@ You might be thinking that what is this package we already have inbuilt purge me
 # Note
 - We supports Discord.js V-13 <b>only</b>.
 - We supports both slash commands and text based commands.
+- Right now the you can purge 100 messages at most.
 
 # Methods
 This package have following methods.
