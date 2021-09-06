@@ -1,5 +1,5 @@
 module.exports = (f, message, channel, filter, number = 100, e) => {
-    const { handle, rejectEmoji, autoDeleteIn, acceptEmoji } = f;
+    const { handle, rejectEmoji, acceptEmoji } = f;
     return new Promise(async (res, rej) => {
         let data = {}, content = "";
 

@@ -25,6 +25,31 @@ class purge {
     }
 
     /**
+     * 
+     * @param {"messages" | "bot-messages" | "user-messages" | "link-messages" | "emoji-messages" | "attachment-messages"  | "messages-equal" | "messages-includes" | "messages-starts" | "messages-ends"} _module The purge module you want to use.
+     * @param {Object} message The Discord.js Messages Object or Command Interaction in which command was used. 
+     * @param {Object} channel The Discord.js Channel Object where i have to purge the messages.
+     * @param {Number} number The number of messages ot purge.
+     * @param {Object | String} extra The user Object for user-messages , string for Includes/Ends/Stats/Equals otherwise nothing.
+     */
+    async purge(_module, message, channel, number, extra) {
+        return new Promise((resolve, reject) => {
+            if ("messages" !== _module && "bot-messages" !== _module && "user-messages" !== _module && "link-messages" !== _module && "emoji-messages" !== _module && "attachment-messages" !== _module && "messages-equal" !== _module && "messages-includes" !== _module && "messages-starts" !== _module && "messages-ends" !== _module) return reject({ type: "error", message: "Invalid Module was provided", id: 4 });
+
+            if (_module === "messages") this.purgeMessages(message, channel, number).then(v => resolve(v)).catch(e => reject(e));
+            else if (_module === "bot-messages") this.purgeBotMessages(message, channel).then(v => resolve(v)).catch(e => reject(e));
+            else if (_module === "link-messages") this.purgeMessagesWithLinks(message, channel, number).then(v => resolve(v)).catch(e => reject(e));
+            else if (_module === "emoji-messages") this.purgeMessagesWithEmojis(message, channel, number).then(v => resolve(v)).catch(e => reject(e));
+            else if (_module === "attachment-messages") this.purgeMessagesWithAttachments(message, channel, number).then(v => resolve(v)).catch(e => reject(e));
+            else if (_module === "user-messages") this.purgeUserMessages(message, channel, number, extra).then(v => resolve(v)).catch(e => reject(e));
+            else if (_module === "messages-equal") this.purgeMessagesEqual(message, channel, number, extra).then(v => resolve(v)).catch(e => reject(e));
+            else if (_module === "messages-includes") this.purgeMessagesEqual(message, channel, number, extra).then(v => resolve(v)).catch(e => reject(e));
+            else if (_module === "messages-ends") this.purgeMessagesEqual(message, channel, number, extra).then(v => resolve(v)).catch(e => reject(e));
+            else if (_module === "messages-starts") this.purgeMessagesEqual(message, channel, number, extra).then(v => resolve(v)).catch(e => reject(e));
+        })
+    }
+
+    /**
      * An module to purge normal messages of a channel ( upto 100 )
      * @param {Discord.Message | Discord.CommandInteraction} message The message or interaction in which command was used 
      * @param {Discord.TextChannel} channel The channel where you want to purge messages
@@ -86,7 +111,7 @@ class purge {
         return new Promise(async (res, rej) => {
             try {
                 await checkParameter(this, message, channel, number, true, undefined, string).then(v => { if (v === "done") return res("done"); message = v.message; channel = v.channel; number = v.number; string = v.string }).catch(e => { rej(e); })
-                purgeIt(this, message, channel, v => v.content.toLowerCase().includes(string), number).then(v => res("done")).catch(e => rej(e))
+                purgeIt(this, message, channel, v => v.content.toLowerCase().includes(string.toLowerCase()), number).then(v => res("done")).catch(e => rej(e))
             } catch (e) {
                 rej(e);
             }
@@ -104,7 +129,7 @@ class purge {
         return new Promise(async (res, rej) => {
             try {
                 await checkParameter(this, message, channel, number, true, undefined, string).then(v => { if (v === "done") return res("done"); message = v.message; channel = v.channel; number = v.number; string = v.string }).catch(e => { rej(e); })
-                purgeIt(this, message, channel, v => v.content.toLowerCase() === string, number).then(v => res("done")).catch(e => rej(e))
+                purgeIt(this, message, channel, v => v.content.toLowerCase() === string.toLowerCase(), number).then(v => res("done")).catch(e => rej(e))
             } catch (e) {
                 rej(e);
             }
@@ -122,7 +147,7 @@ class purge {
         return new Promise(async (res, rej) => {
             try {
                 await checkParameter(this, message, channel, number, true, undefined, string).then(v => { if (v === "done") return res("done"); message = v.message; channel = v.channel; number = v.number; string = v.string }).catch(e => { rej(e); })
-                purgeIt(this, message, channel, v => v.content.toLowerCase().startsWith(string), number).then(v => res("done")).catch(e => rej(e))
+                purgeIt(this, message, channel, v => v.content.toLowerCase().startsWith(string.toLowerCase()), number).then(v => res("done")).catch(e => rej(e))
             } catch (e) {
                 rej(e);
             }
@@ -140,7 +165,7 @@ class purge {
         return new Promise(async (res, rej) => {
             try {
                 await checkParameter(this, message, channel, number, true, undefined, string).then(v => { if (v === "done") return res("done"); message = v.message; channel = v.channel; number = v.number; string = v.string }).catch(e => { rej(e); })
-                purgeIt(this, message, channel, v => v.content.toLowerCase().endsWith(string), number).then(v => res("done")).catch(e => rej(e))
+                purgeIt(this, message, channel, v => v.content.toLowerCase().endsWith(string.toLowerCase()), number).then(v => res("done")).catch(e => rej(e))
             } catch (e) {
                 rej(e);
             }
@@ -157,7 +182,7 @@ class purge {
         return new Promise(async (res, rej) => {
             try {
                 await checkParameter(this, message, channel, number).then(v => { if (v === "done") return res("done"); message = v.message; channel = v.channel; number = v.number; }).catch(e => { rej(e); })
-                purgeIt(this, message, channel, v => /(:[^:\s]+:|<:[^:\s]+:[0-9]+>|<a:[^:\s]+:[0-9]+>)/.test(v.content), number).then(v => res("done")).catch(e => rej(e))
+                purgeIt(this, message, channel, v => /(:[^:\s]+:|<:[^:\s]+:[0-9]+>|<a:[^:\s]+:[0-9]+>)/.test(v.content.toLowerCase()), number).then(v => res("done")).catch(e => rej(e))
             } catch (e) {
                 rej(e);
             }
