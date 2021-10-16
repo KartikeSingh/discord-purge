@@ -55,9 +55,20 @@ class purge {
                     this.purgeUserMessages(message, channel, number, extra).then(v => resolve(v)).catch(e => reject(e));
                     break;
                 case "messages-equal":
-                case "messages-includes":
-                case "messages-starts":
                     this.purgeMessagesEqual(message, channel, number, extra).then(v => resolve(v)).catch(e => reject(e));
+                    break;
+
+                case "messages-includes":
+                    this.purgeMessagesIncludes(message, channel, number, extra).then(v => resolve(v)).catch(e => reject(e));
+                    break;
+
+                case "messages-starts":
+                    this.purgeMessagesStartsWith(message, channel, number, extra).then(v => resolve(v)).catch(e => reject(e));
+                    break;
+                case "messages-ends":
+                    this.purgeMessagesEndsWith(message, channel, number, extra).then(v => resolve(v)).catch(e => reject(e));
+                    break;
+
             }
         })
     }
