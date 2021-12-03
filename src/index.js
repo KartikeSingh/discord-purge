@@ -13,9 +13,9 @@ class purge {
      * @param {String} options.acceptEmoji The Accepting emoji like ✔,✅
      */
     constructor(options) {
-        const { handle, rejectEmoji, acceptEmoji } = options || {};
+        const { handle = true, rejectEmoji, acceptEmoji } = options || {};
 
-        this.handle = handle || true;
+        this.handle = handle;
         this.rejectEmoji = rejectEmoji || "❌";
         this.acceptEmoji = acceptEmoji || "✔";
 
@@ -35,6 +35,7 @@ class purge {
         return new Promise((resolve, reject) => {
             if ("messages" !== _module && "bot-messages" !== _module && "user-messages" !== _module && "link-messages" !== _module && "emoji-messages" !== _module && "attachment-messages" !== _module && "messages-equal" !== _module && "messages-includes" !== _module && "messages-starts" !== _module && "messages-ends" !== _module) return reject({ type: "error", message: "Invalid Module was provided", id: 4 });
 
+            console.log(this.handle);
             switch (_module) {
                 case "messages":
                     this.purgeMessages(message, channel, number).then(v => resolve(v)).catch(e => reject(e));
@@ -83,7 +84,7 @@ class purge {
         return new Promise(async (res, rej) => {
             try {
                 await checkParameter(this, message, channel, number).then(v => { if (v === "done") return res("done"); message = v.message; channel = v.channel; number = v.number }).catch(e => { rej(e); })
-                purgeIt(this, message, channel, (v) => true, number).then(v => res("done")).catch(e => rej(e))
+                purgeIt(this, message, channel, (v) => true, number).then(v => res(v)).catch(e => rej(e))
             } catch (e) {
                 rej(e);
             }
@@ -99,7 +100,7 @@ class purge {
         return new Promise(async (res, rej) => {
             try {
                 await checkParameter(this, message, channel, 100).then(v => { if (v === "done") return res("done"); message = v.message; channel = v.channel; }).catch(e => { rej(e); })
-                purgeIt(this, message, channel, (v) => v.author.bot, 100).then(v => res("done")).catch(e => rej(e))
+                purgeIt(this, message, channel, (v) => v.author.bot, 100).then(v => res(v)).catch(e => rej(e))
             } catch (e) {
                 rej(e);
             }
@@ -117,7 +118,7 @@ class purge {
         return new Promise(async (res, rej) => {
             try {
                 await checkParameter(this, message, channel, number, true, user).then(v => { if (v === "done") return res("done"); message = v.message; channel = v.channel; number = v.number; user = v.user }).catch(e => { rej(e); })
-                purgeIt(this, message, channel, v => v.author.id === user, number).then(v => res("done")).catch(e => rej(e))
+                purgeIt(this, message, channel, v => v.author.id === user, number).then(v => res(v)).catch(e => rej(e))
             } catch (e) {
                 rej(e);
             }
@@ -135,7 +136,7 @@ class purge {
         return new Promise(async (res, rej) => {
             try {
                 await checkParameter(this, message, channel, number, true, undefined, string).then(v => { if (v === "done") return res("done"); message = v.message; channel = v.channel; number = v.number; string = v.string }).catch(e => { rej(e); })
-                purgeIt(this, message, channel, v => v.content.toLowerCase().includes(string.toLowerCase()), number).then(v => res("done")).catch(e => rej(e))
+                purgeIt(this, message, channel, v => v.content.toLowerCase().includes(string.toLowerCase()), number).then(v => res(v)).catch(e => rej(e))
             } catch (e) {
                 rej(e);
             }
@@ -153,7 +154,7 @@ class purge {
         return new Promise(async (res, rej) => {
             try {
                 await checkParameter(this, message, channel, number, true, undefined, string).then(v => { if (v === "done") return res("done"); message = v.message; channel = v.channel; number = v.number; string = v.string }).catch(e => { rej(e); })
-                purgeIt(this, message, channel, v => v.content.toLowerCase() === string.toLowerCase(), number).then(v => res("done")).catch(e => rej(e))
+                purgeIt(this, message, channel, v => v.content.toLowerCase() === string.toLowerCase(), number).then(v => res(v)).catch(e => rej(e))
             } catch (e) {
                 rej(e);
             }
@@ -171,7 +172,7 @@ class purge {
         return new Promise(async (res, rej) => {
             try {
                 await checkParameter(this, message, channel, number, true, undefined, string).then(v => { if (v === "done") return res("done"); message = v.message; channel = v.channel; number = v.number; string = v.string }).catch(e => { rej(e); })
-                purgeIt(this, message, channel, v => v.content.toLowerCase().startsWith(string.toLowerCase()), number).then(v => res("done")).catch(e => rej(e))
+                purgeIt(this, message, channel, v => v.content.toLowerCase().startsWith(string.toLowerCase()), number).then(v => res(v)).catch(e => rej(e))
             } catch (e) {
                 rej(e);
             }
@@ -189,7 +190,7 @@ class purge {
         return new Promise(async (res, rej) => {
             try {
                 await checkParameter(this, message, channel, number, true, undefined, string).then(v => { if (v === "done") return res("done"); message = v.message; channel = v.channel; number = v.number; string = v.string }).catch(e => { rej(e); })
-                purgeIt(this, message, channel, v => v.content.toLowerCase().endsWith(string.toLowerCase()), number).then(v => res("done")).catch(e => rej(e))
+                purgeIt(this, message, channel, v => v.content.toLowerCase().endsWith(string.toLowerCase()), number).then(v => res(v)).catch(e => rej(e))
             } catch (e) {
                 rej(e);
             }
@@ -206,7 +207,7 @@ class purge {
         return new Promise(async (res, rej) => {
             try {
                 await checkParameter(this, message, channel, number).then(v => { if (v === "done") return res("done"); message = v.message; channel = v.channel; number = v.number; }).catch(e => { rej(e); })
-                purgeIt(this, message, channel, v => /(:[^:\s]+:|<:[^:\s]+:[0-9]+>|<a:[^:\s]+:[0-9]+>)/.test(v.content.toLowerCase()), number).then(v => res("done")).catch(e => rej(e))
+                purgeIt(this, message, channel, v => /(:[^:\s]+:|<:[^:\s]+:[0-9]+>|<a:[^:\s]+:[0-9]+>)/.test(v.content.toLowerCase()), number).then(v => res(v)).catch(e => rej(e))
             } catch (e) {
                 rej(e);
             }
@@ -223,7 +224,7 @@ class purge {
         return new Promise(async (res, rej) => {
             try {
                 await checkParameter(this, message, channel, number).then(v => { if (v === "done") return res("done"); message = v.message; channel = v.channel; number = v.number; }).catch(e => { rej(e); })
-                purgeIt(this, message, channel, v => v?.attachments?.size > 0, number).then(v => res("done")).catch(e => rej(e))
+                purgeIt(this, message, channel, v => v?.attachments?.size > 0, number).then(v => res(v)).catch(e => rej(e))
             } catch (e) {
                 rej(e);
             }
@@ -240,7 +241,7 @@ class purge {
         return new Promise(async (res, rej) => {
             try {
                 await checkParameter(this, message, channel, number).then(v => { if (v === "done") return res("done"); message = v.message; channel = v.channel; number = v.number; }).catch(e => { rej(e); })
-                purgeIt(this, message, channel, v => linkdetector.findLinks(v.content).length > 0, number).then(v => res("done")).catch(e => rej(e))
+                purgeIt(this, message, channel, v => linkdetector.findLinks(v.content).length > 0, number).then(v => res(v)).catch(e => rej(e))
             } catch (e) {
                 rej(e);
             }
