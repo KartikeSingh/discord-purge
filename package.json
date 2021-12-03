@@ -4,7 +4,7 @@
     "links-finder": "^1.0.0"
   },
   "name": "discord-purger",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An module to purge messages in a advanc way for discord bots",
   "main": "src/index.js",
   "devDependencies": {},
