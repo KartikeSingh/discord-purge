@@ -7,7 +7,7 @@ module.exports = (f, message, channel, filter, number = 100, e) => {
         const msgs = [];
 
         _msgs.forEach(v => {
-            if (msgs.length > number) return;
+            if (msgs.length > number || Date.now() - v.createdAt > 13.99 * 24 * 60 * 60 * 1000) return;
             data[v.author.username] ? data[v.author.username]++ : data[v.author.username] = 1;
             msgs.push(v);
         });
@@ -15,8 +15,8 @@ module.exports = (f, message, channel, filter, number = 100, e) => {
         if (msgs.length === 0) {
             if (!handle) return rej({ type: "error", message: "No messages found", id: 3 });
 
-            if (!message.replied) message.channel.send({ embeds: [{ color: "RED", title: `No messages found ${rejectEmoji}` }] })
-            else message.followUp({ embeds: [{ color: "RED", title: `No messages found ${rejectEmoji}` }] })
+            if (message.replied) message.channel.send({ embeds: [{ color: "RED", title: `No messages found ${rejectEmoji}` }] })
+            else message.reply({ embeds: [{ color: "RED", title: `No messages found ${rejectEmoji}` }] })
 
             return res("done");
         }
@@ -27,7 +27,7 @@ module.exports = (f, message, channel, filter, number = 100, e) => {
 
         if (Object.keys(data).length > 0) for (let i = 0; i < Object.keys(data).length; i++)content += `**${Object.keys(data)[i]}** : ${Object.values(data)[i]}\n`
 
-        if (!message.replied) message.channel.send({ embeds: [{ color: "GREEN", title: `Successfully Purged ${msgs.length} messages ${acceptEmoji}`, description: `Messages were from these users :\n` + content }] })
+        if (message.replied) message.channel.send({ embeds: [{ color: "GREEN", title: `Successfully Purged ${msgs.length} messages ${acceptEmoji}`, description: `Messages were from these users :\n` + content }] })
         else message.reply({ embeds: [{ color: "GREEN", title: `Successfully Purged ${msgs.length} messages ${acceptEmoji}`, description: `Messages were from these users :\n` + content }] })
         res("done");
     })
