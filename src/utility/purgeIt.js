@@ -15,8 +15,8 @@ module.exports = (f, message, channel, filter, number = 100, e) => {
         if (msgs.length === 0) {
             if (!handle) return rej({ type: "error", message: "No messages found", id: 3 });
 
-            if (message.replied) message.channel.send({ embeds: [{ color: "Red", title: `No messages found ${rejectEmoji}` }] })
-            else message.reply({ embeds: [{ color: "Red", title: `No messages found ${rejectEmoji}` }] })
+            if (message.replied) message.channel.send({ embeds: [{ color: 0Xff0000, title: `No messages found ${rejectEmoji}` }] })
+            else message.reply({ embeds: [{ color: 0Xff0000, title: `No messages found ${rejectEmoji}` }] })
 
             return res("done");
         }
@@ -27,8 +27,8 @@ module.exports = (f, message, channel, filter, number = 100, e) => {
 
         if (Object.keys(data).length > 0) for (let i = 0; i < Object.keys(data).length; i++)content += `**${Object.keys(data)[i]}** : ${Object.values(data)[i]}\n`
 
-        if (message.replied) message.channel.send({ embeds: [{ color: "Green", title: `Successfully Purged ${msgs.length} messages ${acceptEmoji}`, description: `Messages were from these users :\n` + content }] })
-        else message.reply({ embeds: [{ color: "Green", title: `Successfully Purged ${msgs.length} messages ${acceptEmoji}`, description: `Messages were from these users :\n` + content }] })
+        if (message.replied) message.channel.send({ embeds: [{ color: "0X00ff00", title: `Successfully Purged ${msgs.length} messages ${acceptEmoji}`, description: `Messages were from these users :\n` + content }] })
+        else message.reply({ embeds: [{ color: "0X00ff00", title: `Successfully Purged ${msgs.length} messages ${acceptEmoji}`, description: `Messages were from these users :\n` + content }] })
         res("done");
     })
 }
