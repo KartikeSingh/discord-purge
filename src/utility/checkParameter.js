@@ -11,8 +11,8 @@ module.exports = (f, message, channel, number, forward, user, string) => {
 
             return res("done");
         }
-
-        if (!channel || !channel.type || (channel.type !== ChannelType.Guild_Text && channel.type !== ChannelType.Guild_Public_Thread && channel.type !== ChannelType.Guild_News && channel.type !== ChannelType.Guild_News_Thread && channel.type !== ChannelType.Guild_Private_Thread)) {
+console.log(channel.type)
+        if (!channel || !channel.type || (channel.type !== ChannelType.GuildText && channel.type !== ChannelType.PublicThread && channel.type !== ChannelType.AnnouncementThread && channel.type !== ChannelType.PrivateThread)) {
             if (!handle) return rej({ type: "error", message: "Invalid channel was provided", id: 0 });
 
             if (!message.replied) message.channel.send({ embeds: [{ color: 0xff0000, title: `Invalid Channel was provided ${rejectEmoji}` }] })
