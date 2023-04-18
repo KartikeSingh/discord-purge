@@ -1,13 +1,12 @@
 {
   "dependencies": {
-    "discord.js": "^13.1.0",
+    "discord.js": "^14.9.0",
     "links-finder": "^1.0.0"
   },
   "name": "discord-purger",
   "version": "1.0.2",
   "description": "An module to purge messages in a advanc way for discord bots",
   "main": "src/index.js",
-  "devDependencies": {},
   "scripts": {
     "test": "node test"
   },

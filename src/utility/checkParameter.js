@@ -1,3 +1,4 @@
+const { ChannelType }= require("discord.js")
 module.exports = (f, message, channel, number, forward, user, string) => {
     const { handle, rejectEmoji } = f;
 
@@ -5,17 +6,17 @@ module.exports = (f, message, channel, number, forward, user, string) => {
         if (!message || !message.channel) {
             if (!handle) return rej({ type: "error", message: "Invalid Number of messages were provided", id: 1 });
 
-            if (!message.replied) message.channel.send({ embeds: [{ color: "RED", title: `Invalid Number of messages were provided ${rejectEmoji}` }] })
-            else message.followUp({ embeds: [{ color: "RED", title: `Invalid Number of messages were provided ${rejectEmoji}` }] })
+            if (!message.replied) message.channel.send({ embeds: [{ color: 0xff0000, title: `Invalid Number of messages were provided ${rejectEmoji}` }] })
+            else message.followUp({ embeds: [{ color: 0xff0000, title: `Invalid Number of messages were provided ${rejectEmoji}` }] })
 
             return res("done");
         }
-
-        if (!channel || !channel.type || (channel.type !== "GUILD_TEXT" && channel.type !== "GUILD_PUBLIC_THREAD" && channel.type !== "GUILD_NEWS" && channel.type !== "GUILD_NEWS_THREAD" && channel.type !== "GUILD_PRIVATE_THREAD")) {
+console.log(channel.type)
+        if (!channel || !channel.type || (channel.type !== ChannelType.GuildText && channel.type !== ChannelType.PublicThread && channel.type !== ChannelType.AnnouncementThread && channel.type !== ChannelType.PrivateThread)) {
             if (!handle) return rej({ type: "error", message: "Invalid channel was provided", id: 0 });
 
-            if (!message.replied) message.channel.send({ embeds: [{ color: "RED", title: `Invalid Channel was provided ${rejectEmoji}` }] })
-            else message.followUp({ embeds: [{ color: "RED", title: `Invalid Channel was provided ${rejectEmoji}` }] })
+            if (!message.replied) message.channel.send({ embeds: [{ color: 0xff0000, title: `Invalid Channel was provided ${rejectEmoji}` }] })
+            else message.followUp({ embeds: [{ color: 0xff0000, title: `Invalid Channel was provided ${rejectEmoji}` }] })
 
             return res("done");
         }
@@ -25,8 +26,8 @@ module.exports = (f, message, channel, number, forward, user, string) => {
         if (!number || isNaN(number)) {
             if (!handle) return rej({ type: "error", message: "Invalid Number of messages were provided", id: 1 });
 
-            if (!message.replied) message.channel.send({ embeds: [{ color: "RED", title: `Invalid Number of messages were provided ${rejectEmoji}` }] })
-            else message.followUp({ embeds: [{ color: "RED", title: `Invalid Number of messages were provided ${rejectEmoji}` }] })
+            if (!message.replied) message.channel.send({ embeds: [{ color: 0xff0000, title: `Invalid Number of messages were provided ${rejectEmoji}` }] })
+            else message.followUp({ embeds: [{ color: 0xff0000, title: `Invalid Number of messages were provided ${rejectEmoji}` }] })
 
             return res("done");
         }
@@ -38,8 +39,8 @@ module.exports = (f, message, channel, number, forward, user, string) => {
         if (!user && !string) {
             if (!handle) return rej({ type: "error", message: "Invalid user/user ID was provided", id: 2 });
 
-            if (!message.replied) message.channel.send({ embeds: [{ color: "RED", title: `Invalid User/User ID was provided ${rejectEmoji}` }] })
-            else message.followUp({ embeds: [{ color: "RED", title: `Invalid User/User ID was provided ${rejectEmoji}` }] })
+            if (!message.replied) message.channel.send({ embeds: [{ color: 0xff0000, title: `Invalid User/User ID was provided ${rejectEmoji}` }] })
+            else message.followUp({ embeds: [{ color: 0xff0000, title: `Invalid User/User ID was provided ${rejectEmoji}` }] })
 
             return res("done");
         }
@@ -47,8 +48,8 @@ module.exports = (f, message, channel, number, forward, user, string) => {
         if (!user && (!string || string.trim().length === 0)) {
             if (!handle) return rej({ type: "error", message: "Invalid string was provided", id: 3 });
 
-            if (!message.replied) message.channel.send({ embeds: [{ color: "RED", title: `Invalid string was provided ${rejectEmoji}` }] })
-            else message.followUp({ embeds: [{ color: "RED", title: `Invalid string was provided ${rejectEmoji}` }] })
+            if (!message.replied) message.channel.send({ embeds: [{ color: 0xff0000, title: `Invalid string was provided ${rejectEmoji}` }] })
+            else message.followUp({ embeds: [{ color: 0xff0000, title: `Invalid string was provided ${rejectEmoji}` }] })
 
             return res("done");
         }
