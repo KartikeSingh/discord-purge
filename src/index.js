@@ -1,7 +1,8 @@
 const Discord = require("discord.js");
 const linkdetector = require("links-finder");
-let checkParameter = require("./utility/checkParameter");
-let purgeIt = require("./utility/purgeIt");
+const checkParameter = require("./utility/checkParameter");
+const purgeIt = require("./utility/purgeIt");
+const modules = require("./utility/modules");
 
 class purge {
     /**
@@ -18,9 +19,6 @@ class purge {
         this.handle = handle;
         this.rejectEmoji = rejectEmoji || "❌";
         this.acceptEmoji = acceptEmoji || "✔";
-
-        checkParameter = checkParameter.bind(this)
-        purgeIt = purgeIt.bind(this)
     }
 
     /**
@@ -33,9 +31,8 @@ class purge {
      */
     async purge(_module, message, channel, number, extra) {
         return new Promise((resolve, reject) => {
-            if ("messages" !== _module && "bot-messages" !== _module && "user-messages" !== _module && "link-messages" !== _module && "emoji-messages" !== _module && "attachment-messages" !== _module && "messages-equal" !== _module && "messages-includes" !== _module && "messages-starts" !== _module && "messages-ends" !== _module) return reject({ type: "error", message: "Invalid Module was provided", id: 4 });
+            if (!modules.includes(_module)) return reject({ type: "error", message: "Invalid Module was provided", id: 4 });
 
-            console.log(this.handle);
             switch (_module) {
                 case "messages":
                     this.purgeMessages(message, channel, number).then(v => resolve(v)).catch(e => reject(e));

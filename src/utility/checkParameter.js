@@ -11,7 +11,7 @@ module.exports = (f, message, channel, number, forward, user, string) => {
 
             return res("done");
         }
-console.log(channel.type)
+
         if (!channel || !channel.type || (channel.type !== ChannelType.GuildText && channel.type !== ChannelType.PublicThread && channel.type !== ChannelType.AnnouncementThread && channel.type !== ChannelType.PrivateThread)) {
             if (!handle) return rej({ type: "error", message: "Invalid channel was provided", id: 0 });
 
